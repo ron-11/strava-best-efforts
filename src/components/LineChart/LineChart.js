@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './chart.css';
 import * as d3 from 'd3';
+import './lineChart.css';
 
 const settings = {
   width: 500,
@@ -74,7 +74,8 @@ class DataCircles extends React.Component {
 class ScatterPlot extends React.Component {
   getXScale() {
     const xMax = d3.max(this.props.data, (d) => d[0]);
-    
+    console.log(xMax);
+
     return d3.scale.linear()
       .domain([0, xMax])
       .range([this.props.padding, (this.props.width - this.props.padding * 2)]);
@@ -115,7 +116,7 @@ export default class AppChart extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className='LineChart'>
         <h1>React and D3 are Friends</h1>
         <ScatterPlot data={this.state.data} {...settings} />
         <div className="controls">
