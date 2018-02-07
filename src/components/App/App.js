@@ -34,7 +34,7 @@ class App extends React.Component {
 				}
 				efforts.push(effort);
 			})
-			
+
 			return this.setState({
 				efforts: efforts,
 				isLoading: false
@@ -69,23 +69,18 @@ class App extends React.Component {
 			return <h1>Chargement ...</h1>
 		}
 
-		const activities = this.state.efforts.map(
-			(activity, i) =>
-				<li key={i}>
-					{activity.elapsed_time} => {activity.start_date}
-				</li>
-		); 
+		const activities = this.state.efforts;
 
 		return (
 			<div>
-				<h1>Hello</h1>
+				<h1>App Best Efforts Strava</h1>
 				<Container>
 				  <Row>
 				    <Col sm={7}>
-							<LineChart className='LineChart'/>
+							<LineChart activities={activities}/>
 				    </Col>
 				    <Col sm={5}>
-							<Top10 activities={activities}  className='Top10'/>
+							<Top10 activities={activities}/>
 				    </Col>
 				  </Row>
 				</Container>
