@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+import Paper from 'material-ui/Paper';
+import Moment from 'moment';
 import Time from '../Time/Time.js';
 import './top10.css';
 
@@ -24,33 +18,42 @@ class Top10 extends React.Component {
 	}
 
 	render () {
-		const activities = this.props.activities.map((data, idx) => { 
-      return (
-      	<TableRow key={idx + 1}>
-          <TableRowColumn>{idx + 1}</TableRowColumn>
-          <TableRowColumn><Time time={data.elapsed_time}/></TableRowColumn>
-          <TableRowColumn><Time time={data.moving_time}/></TableRowColumn>
-          <TableRowColumn>{data.start_date}</TableRowColumn>
-        </TableRow>
-      )
-    });
+		Moment.locale('fr');
 
 		return (
-      <MuiThemeProvider>
+      <Paper>
 	      <Table>
-          <TableHeader>
+          <TableHead>
 	          <TableRow>
-	            <TableHeaderColumn>#</TableHeaderColumn>
-	            <TableHeaderColumn>Temps en mouvement</TableHeaderColumn>
-	            <TableHeaderColumn>Temps Total</TableHeaderColumn>
-	            <TableHeaderColumn>Date</TableHeaderColumn>
+	            <TableCell>#</TableCell>
+	            <TableCell>Temps</TableCell>
+	            <TableCell>Temps Total</TableCell>
+	            <TableCell>Date</TableCell>
 	          </TableRow>
-	        </TableHeader>
+	        </TableHead>
 	        <TableBody>
-	          {activities}
+	          {this.props.activities.map((data, idx) => { 
+	          	return (
+	          		<TableRow key={idx + 1}>
+				          <TableCell>{idx + 1}</TableCell>
+
+				          <TableCell>
+				          	<Time time={data.elapsed_time}/>
+				          </TableCell>
+
+				          <TableCell>
+				          	<Time time={data.moving_time}/>
+				          </TableCell>
+				          
+				          <TableCell>
+				          	{Moment(data.start_date).format('DD/MM/YYYY')}
+				          </TableCell>
+				        </TableRow>
+				      );
+	          })}
 	        </TableBody>
 	      </Table>
-      </MuiThemeProvider>
+      </Paper>
 		);
 	}
 }

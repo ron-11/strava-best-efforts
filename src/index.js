@@ -5,5 +5,5 @@ import './main.css';
 
 render(
 	<App />,
-	document.getElementById('root')
+	document.getElementById('container')
 );

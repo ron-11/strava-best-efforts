@@ -11,6 +11,7 @@ class App extends React.Component {
 		super()
 		firebase.initializeApp(config)
 		this.state = {
+			efforts: [],
 			isLoading: true
 		}
 	}
@@ -56,14 +57,6 @@ class App extends React.Component {
 		else { return hours + ':' + minutes + ':' + seconds; }
 	}
 
-	triCroissant(x, y) {
-		return x - y;
-	}
-
-	triDecroissant(x, y) {
-		return y - x;
-	}
-
 	render () {
 		if (this.state.isLoading) {
 			return <h1>Chargement ...</h1>
@@ -74,7 +67,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<h1>App Best Efforts Strava</h1>
-				<Container>
+				<Container fluid>
 				  <Row>
 				    <Col sm={7}>
 							<LineChart activities={activities}/>
