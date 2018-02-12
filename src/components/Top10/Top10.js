@@ -11,13 +11,20 @@ class Top10 extends React.Component {
 	}
 
 	getTop10() {
-		return this.props.activities
+		const efforts = this.props.activities
 			.sort(function(x, y) {
 				return x.elapsed_time - y.elapsed_time;
-			});
+			})
+			.slice(0,10);
+
+    this.setState({ efforts: efforts });
 	}
 
 	render () {
+		const style = {
+		  height: 30
+		};
+
 		Moment.locale('fr');
 
 		return (
@@ -27,22 +34,17 @@ class Top10 extends React.Component {
 	          <TableRow>
 	            <TableCell>#</TableCell>
 	            <TableCell>Temps</TableCell>
-	            <TableCell>Temps Total</TableCell>
 	            <TableCell>Date</TableCell>
 	          </TableRow>
 	        </TableHead>
 	        <TableBody>
-	          {this.props.activities.map((data, idx) => { 
+	          {this.state.efforts.map((data, idx) => { 
 	          	return (
-	          		<TableRow key={idx + 1}>
+	          		<TableRow key={idx + 1} style={style}>
 				          <TableCell>{idx + 1}</TableCell>
 
 				          <TableCell>
 				          	<Time time={data.elapsed_time}/>
-				          </TableCell>
-
-				          <TableCell>
-				          	<Time time={data.moving_time}/>
 				          </TableCell>
 				          
 				          <TableCell>

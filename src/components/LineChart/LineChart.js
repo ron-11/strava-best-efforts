@@ -4,7 +4,7 @@ import ScatterPlot from './ScatterPlot.js';
 import './lineChart.css';
 
 const settings = {
-  width: 500,
+  width: 300,
   height: 300,
   padding: 30,
   numDataPoints: 50,
