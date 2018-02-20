@@ -68,6 +68,9 @@ class Top10 extends React.Component {
 
 				case 'bronze': 
 					return {color: bronzeMedal, fontSize: '16px'};
+
+				default:
+					break;
 			}
 		}
 
@@ -84,7 +87,7 @@ class Top10 extends React.Component {
 	          </TableRow>
 	        </TableHead>
 	        <TableBody>
-	          { this.state.efforts.map((data, idx) => {
+	          {this.state.efforts.map((data, idx) => {
 	          	if (data.medal) {
 	          		return (
 	          			<TableRow key={idx + 1} style={medal_style}>
@@ -117,7 +120,7 @@ class Top10 extends React.Component {
 					        </TableRow>
 					      );
 					    }
-	          }) }
+	          })}
 	        </TableBody>
 	      </Table>
       </Paper>

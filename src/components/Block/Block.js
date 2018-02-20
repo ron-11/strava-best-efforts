@@ -1,9 +1,9 @@
 import React from 'react';
 import * as firebase from 'firebase';
 import { Row, Col } from 'react-grid-system';
-import { ScatterplotChart } from 'react-easy-chart';
 import Top10 from '../Top10/Top10.js';
-import moment from 'moment';
+import ScatterPlotChart from '../ScatterPlotChart/ScatterPlotChart.js';
+// import moment from 'moment';
 
 class Block extends React.Component {
 	constructor () {
@@ -59,8 +59,8 @@ class Block extends React.Component {
 			}
 
 		  return {
-		  	x: moment(value.start_date).format('DD-MMM-YY'),
-		  	y: value.elapsed_time
+		  	x: new Date(value.start_date),
+		  	y: value.elapsed_time,
 		 	};
 		});
 
@@ -69,14 +69,7 @@ class Block extends React.Component {
 				<h2>{this.props.distance}</h2>
 				<Row>
 			    <Col sm={7}>
-			    	<ScatterplotChart
-					    data={scatterplot_data}
-					    axes
-					    width={750}
-					    height={400}
-					    dotRadius={4}
-	    				xType="time"
-	    				yDomainRange={[max_value, min_value]} />
+			    	<ScatterPlotChart data={scatterplot_data} width={600} height={400}/>
 			    </Col>
 			    <Col sm={5}>
 						<Top10 activities={this.state.efforts}/>
